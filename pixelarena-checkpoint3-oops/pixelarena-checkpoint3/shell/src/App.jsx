@@ -1,12 +1,7 @@
 import React, { Suspense, lazy } from 'react';
 import './App.css';
 
-// TODO: Importer le Header depuis le MFE distant
-// Utiliser React.lazy() avec un import dynamique
-// Format: const Header = lazy(() => import('nomRemote/./NomModule'));
 const Header = lazy(() => import('mfeHeader/./Navbar'));
-
-// Fallback pendant le chargement
 function HeaderFallback() {
   return (
     <div className="header-loading">
