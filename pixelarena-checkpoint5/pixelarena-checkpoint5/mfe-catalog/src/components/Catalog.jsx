@@ -13,8 +13,8 @@ const PRODUCTS = [
 
 function ProductCard({ product }) {
   const handleAddToCart = () => {
-    // TODO: notifie l'eventBus que ce produit a été ajouté au panier
-    // L'événement doit transmettre : id, name, price
+    eventBus.emit('cart:add', { id: product.id, name: product.name, price: product.price });
+    console.log('[EventBus] cart:add', { id: product.id, name: product.name, price: product.price });
   };
 
   return (
