@@ -7,9 +7,18 @@ function Navbar() {
   const [cartCount, setCartCount] = useState(0);
 
   useEffect(() => {
-    // TODO 1 : s'abonner à game:joined → incrémenter le badge notifications
-    // TODO 2 : s'abonner à cart:updated → mettre à jour le badge panier (count)
-    // TODO 3 : retourner le cleanup des 2 abonnements
+    const unsubGame = eventBus.on('game:joined', () => {
+      setNotifications(prev => prev + 1);
+    });
+
+    const unsubCart = eventBus.on('cart:updated', ({ count }) => {
+      setCartCount(count);
+    });
+
+    return () => {
+      unsubGame();
+      unsubCart();
+    };
   }, []);
 
   return (
